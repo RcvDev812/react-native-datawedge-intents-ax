@@ -459,37 +459,37 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
 
     //  Credit: http://stackoverflow.com/questions/28083430/communication-between-broadcastreceiver-and-activity-android#30964385
     @Override
-    public void update(Observable observable, Object data) {
-        Intent intent = (Intent)data;
 
-        if (intent.hasExtra("v2API")) {
-            Bundle intentBundle = intent.getExtras();
-            Log.d("Customized ZEBRA", "INTENT########################");
-            // Check and handle KeyEvent
-            for (String key : new ArrayList<String>(intentBundle.keySet())) {
-                Log.d("Customized ZEBRA", "INTENT KEY:" + key);
-                Object extraValue = intentBundle.get(key);
-                if (extraValue instanceof KeyEvent) {
-                    // Handle KeyEvent here
-                    // For example, convert to a suitable format or remove it
-                    intentBundle.remove(key); // Remove or replace with suitable format
-                } else if (extraValue instanceof byte[] || extraValue instanceof ArrayList || extraValue instanceof ArrayList<?>) {
-                    intentBundle.remove(key);
-                }
-            }
-            Log.d("Customized ZEBRA", "INTENT get args from bundle");
-            try {
-                WritableMap map = Arguments.fromBundle(intentBundle);
-                sendEvent(this.reactContext, "datawedge_broadcast_intent", map);
-                Log.d("Customized ZEBRA", "INTENT map from bundle");
-            } catch (Exception e) {
-                Log.e("Customized ZEBRA", "Error processing intent bundle", e);
-                // Handle the exception or log the error
-            }
-            Log.d("Customized ZEBRA", "INTENT map from bundle");
+    public void update(Observable observable, Object data)
+    {
+      Intent intent = (Intent)data;
 
-        }
-    }
+      if (intent.hasExtra("v2API"))
+      {
+          Bundle intentBundle = intent.getExtras();
+
+          // Remove arrays (fb converter cannot cope with byte arrays)
+          for (String key : new ArrayList<String>(intentBundle.keySet())) {
+              Object extraValue = intentBundle.get(key);
+              if (extraValue instanceof KeyEvent) {
+                  Log.d("Customized ZEBRA", "INTENT KEY EVENT ####");
+                  // Handle KeyEvent here
+                  // For example, convert to a suitable format or remove it
+                  intentBundle.remove(key); // Remove or replace with suitable format
+              } else if (extraValue instanceof byte[] || extraValue instanceof ArrayList || extraValue instanceof ArrayList<?>) {
+                  intentBundle.remove(key);
+              }
+          }
+          Log.d("Customized ZEBRA", "INTENT map from bundle Start");
+          try {
+              WritableMap map = Arguments.fromBundle(intentBundle);
+              sendEvent(this.reactContext, "datawedge_broadcast_intent", map);
+              Log.d("Customized ZEBRA", "INTENT map from bundle");
+          } catch (Exception e) {
+              Log.e("Customized ZEBRA", "Error processing intent bundle", e);
+              // Handle the exception or log the error
+          }
+      }
 
       String action = intent.getAction();
       if (action.equals(ACTION_ENUMERATEDLISET)) 
