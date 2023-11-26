@@ -480,14 +480,16 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
                   int action = keyEvent.getAction();
                   intentBundle.remove(key); // Remove or replace with suitable format
                   
+                  Log.d("Customized ZEBRA", "Key Pressed: " + keyCode);
+                  intentBundle.putInt("keyCode", keyCode);
+                        
                     if (action == KeyEvent.ACTION_DOWN) {
                         // Respond to key press
-                        Log.d("Customized ZEBRA", "Key Pressed: " + keyCode);
-                        intentBundle.putInt("keInt", keyCode);
+                        intentBundle.putString("keyAction", "down");
                 
                     } else if (action == KeyEvent.ACTION_UP) {
                         // Respond to key release
-                        Log.d("Customized ZEBRA", "Key Released: " + keyCode);
+                        intentBundle.putString("keyAction", "up");
                     }
 
                   
