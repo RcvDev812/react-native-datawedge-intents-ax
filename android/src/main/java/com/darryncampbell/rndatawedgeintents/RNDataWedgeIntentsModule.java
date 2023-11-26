@@ -475,13 +475,13 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
               Object extraValue = intentBundle.get(key);
               if (extraValue instanceof KeyEvent) {
                   Log.d("Customized ZEBRA", "INTENT KEY EVENT:" + key);
-                  int keyCode = extraValue.getKeyCode();
-                  Log.d("Customized ZEBRA", "INTENT KEY EVENT code:" + keycode);
+                  KeyEvent keyEvent = (KeyEvent) extraValue;
+                  int keyCode = keyEvent.getKeyCode();
+                  Log.d("Customized ZEBRA", "INTENT KEY EVENT code:" + keyCode);
                   // Handle KeyEvent here
                   // For example, convert to a suitable format or remove it
                   intentBundle.remove(key); // Remove or replace with suitable format
                   intentBundle.putInt("keInt", keyCode);
-                  intentBundle.putString("pressKey", keyCode);
                   
               } else if (extraValue instanceof byte[] || extraValue instanceof ArrayList || extraValue instanceof ArrayList<?>) {
                   intentBundle.remove(key);
