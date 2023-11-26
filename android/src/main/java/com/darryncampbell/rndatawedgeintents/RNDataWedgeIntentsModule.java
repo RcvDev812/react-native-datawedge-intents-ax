@@ -464,9 +464,10 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
 
         if (intent.hasExtra("v2API")) {
             Bundle intentBundle = intent.getExtras();
-
+            Log.d("Customized ZEBRA", "INTENT########################");
             // Check and handle KeyEvent
             for (String key : new ArrayList<String>(intentBundle.keySet())) {
+                Log.d("Customized ZEBRA", "INTENT KEY:" + key);
                 Object extraValue = intentBundle.get(key);
                 if (extraValue instanceof KeyEvent) {
                     // Handle KeyEvent here
@@ -476,9 +477,17 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
                     intentBundle.remove(key);
                 }
             }
+            Log.d("Customized ZEBRA", "INTENT get args from bundle");
+            try {
+                WritableMap map = Arguments.fromBundle(intentBundle);
+                sendEvent(this.reactContext, "datawedge_broadcast_intent", map);
+                Log.d("Customized ZEBRA", "INTENT map from bundle");
+            } catch (Exception e) {
+                Log.e("Customized ZEBRA", "Error processing intent bundle", e);
+                // Handle the exception or log the error
+            }
+            Log.d("Customized ZEBRA", "INTENT map from bundle");
 
-            WritableMap map = Arguments.fromBundle(intentBundle);
-            sendEvent(this.reactContext, "datawedge_broadcast_intent", map);
         }
     }
 
