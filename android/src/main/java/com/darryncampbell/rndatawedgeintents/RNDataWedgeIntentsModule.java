@@ -54,6 +54,10 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
     private static final String TAG = RNDataWedgeIntentsModule.class.getSimpleName();
 
     //  THESE ACTIONS ARE DEPRECATED, PLEASE SPECIFY THE ACTION AS PART OF THE CALL TO sendBroadcastWithExtras
+    private static final String ACTION_BUTTON_L1 = "com.symbol.button.L1";
+    private static final String ACTION_BUTTON_L2 = "com.symbol.button.L2";
+    private static final String ACTION_BUTTON_R1 = "com.symbol.button.R1";
+    private static final String ACTION_BUTTON_R2 = "com.symbol.button.R2";
     private static final String ACTION_SOFTSCANTRIGGER = "com.symbol.datawedge.api.ACTION_SOFTSCANTRIGGER";
     private static final String ACTION_SCANNERINPUTPLUGIN = "com.symbol.datawedge.api.ACTION_SCANNERINPUTPLUGIN";
     private static final String ACTION_ENUMERATESCANNERS = "com.symbol.datawedge.api.ACTION_ENUMERATESCANNERS";
@@ -143,6 +147,10 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
       final Map<String, Object> constants = new HashMap<>();
       //  These are the constants available to the caller
       //  CONSTANTS HAVE BEEN DEPRECATED and will not stay current with the latest DW API
+      constants.put("ACTION_BUTTON_L1", ACTION_BUTTON_L1);
+      constants.put("ACTION_BUTTON_L2", ACTION_BUTTON_L2);
+      constants.put("ACTION_BUTTON_R1", ACTION_BUTTON_R1);
+      constants.put("ACTION_BUTTON_R2", ACTION_BUTTON_R2);
       constants.put("ACTION_SOFTSCANTRIGGER", ACTION_SOFTSCANTRIGGER);
       constants.put("ACTION_SCANNERINPUTPLUGIN", ACTION_SCANNERINPUTPLUGIN);
       constants.put("ACTION_ENUMERATESCANNERS", ACTION_ENUMERATESCANNERS);

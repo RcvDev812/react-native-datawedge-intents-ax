@@ -12,6 +12,10 @@ if (Platform.OS === 'android')
 
     var DataWedgeIntents = {
         //  Specifying the DataWedge API constants in this module is deprecated.  It is not feasible to stay current with the DW API.
+        ACTION_BUTTON_L1: RNDataWedgeIntents.ACTION_BUTTON_L1,
+        ACTION_BUTTON_L2: RNDataWedgeIntents.ACTION_BUTTON_L2,
+        ACTION_BUTTON_R1: RNDataWedgeIntents.ACTION_BUTTON_R1,
+        ACTION_BUTTON_R2: RNDataWedgeIntents.ACTION_BUTTON_R2,
         ACTION_SOFTSCANTRIGGER: RNDataWedgeIntents.ACTION_SOFTSCANTRIGGER,
         ACTION_SCANNERINPUTPLUGIN: RNDataWedgeIntents.ACTION_SCANNERINPUTPLUGIN,
         ACTION_ENUMERATESCANNERS: RNDataWedgeIntents.ACTION_ENUMERATESCANNERS,
@@ -23,6 +27,7 @@ if (Platform.OS === 'android')
         TOGGLE_SCANNING: RNDataWedgeIntents.TOGGLE_SCANNING,
         ENABLE_PLUGIN: RNDataWedgeIntents.ENABLE_PLUGIN,
         DISABLE_PLUGIN: RNDataWedgeIntents.DISABLE_PLUGIN,
+        
 
         sendIntent(action, parameterValue) {
             //  THIS METHOD IS DEPRECATED, use SendBroadcastWithExtras
